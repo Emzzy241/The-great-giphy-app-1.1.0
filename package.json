@@ -1,0 +1,35 @@
+{
+  "name": "giphy-api -promise",
+  "version": "1.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack --mode development",
+    "start": "npm run build & webpack-dev-server --open --mode development",
+    "lint": "eslint src/*.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.6.0",
+    "dotenv-webpack": "^8.0.1",
+    "eslint": "^8.10.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "4.7.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.1",
+    "jquery": "^3.6.1",
+    "popper.js": "^1.16.1"
+  }
+}
