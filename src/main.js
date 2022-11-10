@@ -20,22 +20,64 @@ $(document).ready(function () {
 
 
         // New code starts here
-        let giphyPromise = new Promise( function(appResolved, appRejected){
+        let giphyPromise = new Promise(function (promiseResolved, promiseRejected) {
 
             // initiating an XMLhttprequest object for api and storing it in a variable
-    
+
             let giphyRequest = new XMLHttpRequest();
             // this endpoint is for searching giphy for an mood user might be in 
-    
+
             // with this enpoint I first protected my API key by hiding it with my environmental variables file and then I inputted the emotion user might be feeling, 
             // At the beginning I set the search by telling giphy I want this particular endpoint to serach for gifs matching user's value 
-    
-    
+
+
             const giphyUrl = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${userGif}&limit=1&offset=0&rating=g&lang=en`
-        
-        
+
+            giphyRequest.onload = function () {
+                if (this.status === 200) {
+                    // we used promiseResolved or promiseRejected to determine whether a promise should be resolved or rejected
+                    promiseResolved(giphyRequest.response);
+                }
+                else {
+                    promiseRejected(giphyRequest.response)
+                }
+
+            }
+
+            // opening and sending a request to the gif server
+
+            giphyRequest.open("GET", giphyUrl, true)
+            giphyRequest.send();
         });
 
+        giphyPromise.then(function (myPromiseSuccess) {
+
+            // showing what I have in my parsed JSON in the console
+            console.log(myPromiseSuccess.data[0].embed_url);
+
+            // parsing the json to store the embed_url image in it
+            const firstEmbeddedGifUrl = myPromiseSuccess.data[0].embed_url;
+
+            // showing(in this case prepending) the gifs in the application for user
+            $(".giphy-shower").prepend(
+                `
+                <br> <br>
+                    <h5>You are ${userGif}, this is a gif for you</h5> 
+                <iframe src="${firstEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
+            );
+
+        },
+            function (myPromiseFailed) {
+                $(".giphy-shower").prepend(
+                    `
+                <br> <br>
+                <h5>There was an error processing your Request: ${myPromiseFailed}</h5>    
+                <h5>Please Try again</h5>    
+                `
+                );
+            }
+
+        )
 
 
         //  Storing a function The property(or key) of XMLHttprequest that will listen for changes to the XMLHttpRequest
@@ -66,8 +108,8 @@ $(document).ready(function () {
 
             // to get my gif's url, I would pick the  img tag I have in index.html and then 
             // give it a url value of my user's emotion
-
             console.log(myGifResponse.data[0].embed_url);
+
             // $("img").attr("src", myGifResponse.data[0].url);
 
             const firstEmbeddedGifUrl = myGifResponse.data[0].embed_url;
