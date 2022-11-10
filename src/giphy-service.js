@@ -1,5 +1,8 @@
 // business Logic file
 
+
+// all the classes we created here just creates an API call wrapped in a promise, there is no need for any query or DOM alteration
+
 // class for searching giphy based on user's input
 export class SearchGiphyService {
 
@@ -18,10 +21,10 @@ export class SearchGiphyService {
             giphySearchRequest.onload = function () {
                 if (this.status === 200) {
                     // we used gifPromiseResolved or gifPromiseRejected to determine whether a promise should be resolved or rejected
-                    gifPromiseResolved(giphyRequest.response);
+                    gifPromiseResolved(giphySearchRequest.response);
                 }
                 else {
-                    gifPromiseRejected(giphyRequest.response)
+                    gifPromiseRejected(giphySearchRequest.response)
                 }
 
             }
@@ -106,10 +109,10 @@ export class TrendingGif {
             giphyTrendingRequest.onload = function () {
                 // running another branch to determine whether the status of the trend promise is = 200
                 if (this.status === 200) {
-                    trendingGifResolved(this.response);
+                    trendingGifResolved(giphyTrendingRequest.response);
                 }
                 else {
-                    trendingGiffRejected(this.response);
+                    trendingGiffRejected(giphyTrendingRequest.response);
                 }
             }
 
