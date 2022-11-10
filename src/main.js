@@ -1,9 +1,28 @@
+// UserInterface Logic file
+
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
+// importing all three classes to my UI logic
+import {SearchGiphyService} from "./giphy-service.js";
+import {RandomGif} from "./giphy-service.js";
+import {TrendingGif} from "./giphy-service.js";
 
+
+
+// working with the imported classes
+
+$(document).ready({
+    $("")
+});
+
+
+
+
+// in doing it this way(below) there is no separation of logic
+/*
 $(document).ready(function () {
     $(".user-form").submit(function (event) {
         // preventing the submit button from refreshing 
@@ -89,7 +108,6 @@ $(document).ready(function () {
         )
 
 
-        /*
         //  Storing a function The property(or key) of XMLHttprequest that will listen for changes to the XMLHttpRequest
 
         giphyRequest.onreadystatechange = function () {
@@ -138,11 +156,11 @@ $(document).ready(function () {
 
 
 
-        */
 
 
     });
 
+   // Other features by the great giphy App
 
     $("#other-features").click(function () {
 
@@ -292,125 +310,8 @@ $(document).ready(function () {
     });
 
 
-    /*
-        // Other features by the great giphy App
+     
     
-        // saving up the 2 new features the app offers
-    
-        $("#other-features").click(function () {
-    
-            let userPick = $("#new-features").find(":selected").val();
-            console.log(userPick);
-    
-            // clearing out the 
-    
-            // running a branch to determine which value user selected to determine which API CALL TO MAKE
-    
-    
-            if (userPick === "random") {
-    
-                // doing the same thing I did for the first app feature by the left 
-                // the only difference is the difference in the API call I'm making
-    
-                let giphyRandomRequest = new XMLHttpRequest();
-    
-                // using another endpoint(the random endpoint): not the endpoint above but a different one 
-                // that will allow me ask giphy for a random gif
-    
-                const randomGiphyUrl = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=&rating=g`
-    
-                giphyRandomRequest.onreadystatechange = function () {
-                    console.log(this.readyState);
-    
-                    if (this.readyState === 4 && this.status === 200) {
-                        const giphyRandomResponse = JSON.parse(this.responseText);
-    
-                        getRandomGifs(giphyRandomResponse);
-                    }
-    
-    
-    
-                };
-                // time to open and send my random requests
-                giphyRandomRequest.open("GET", randomGiphyUrl, true);
-                giphyRandomRequest.send();
-    
-    
-                // function for getting the random gifs and showing them to user
-    
-                function getRandomGifs(myGiphyRandomResponse) {
-                    $(".ranGif").show();
-                    $(".treGIf").show();
-                    console.log(myGiphyRandomResponse.data.embed_url);
-    
-                    const secondEmbeddedGiphyUrl = myGiphyRandomResponse.data.embed_url;
-    
-                    console.log(secondEmbeddedGiphyUrl);
-    
-    
-                    $(".gif-random-shower").prepend(
-                        `
-                        <br> <br>
-                        <h5>A random gif</h5> 
-                        <iframe src="${secondEmbeddedGiphyUrl}" height="300" width="290" frameborder="0" allowfullscreen>
-                        
-                        </iframe>`
-                    );
-    
-                }
-    
-    
-    
-            }
-            else if (userPick === "trend") {
-    
-                let giphyTrendRequest = new XMLHttpRequest();
-    
-                // storing new endpoint in a variable: using the giphy trend endpoint 
-    
-                const giphyTrendUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.API_KEY}&tag=&rating=g`
-    
-    
-    
-                // NOTE: the 2 new features added don't need 2 parameters like the first one that needed(uservalue and API key)
-                // the only thing the 2 new features need is just the api key, the Team @giphy have already taken care of both the random and trend requests we used
-    
-                giphyTrendRequest.onreadystatechange = function () {
-                    console.log(this.readyState);
-    
-                    // a branch to determine if the trend request has been gotten with the giphy API
-    
-                    if (this.readyState === 4 && this.status === 200) {
-                        const giphyTrendResponse = JSON.parse(this.responseText);
-    
-                        getTrendGifs(giphyTrendResponse);
-                    }
-    
-                };
-    
-                // opening and sending the trend request
-    
-                giphyTrendRequest.open("GET", giphyTrendUrl, true);
-                giphyTrendRequest.send();
-    
-    
-                // function for getting the random gifs and showing them to user
-    
-                function getTrendGifs(myGiphyTrendResponse) {
-                    console.log(myGiphyTrendResponse.data[0].embed_url);
-    
-                    const thirdEmbeddedGifUrl = myGiphyTrendResponse.data[0].embed_url;
-    
-                    $(".gif-trend-shower").prepend(
-                        `
-                        <br> <br>
-                        <h5>A Trending gif</h5> 
-                        <iframe src="${thirdEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
-                    );
-                }
-    
-            }
-    
-        })
-            */
 });
+
+*/
