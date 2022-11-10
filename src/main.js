@@ -194,7 +194,7 @@ $(document).ready(function () {
             giphyRandomPromise.then(function (randomPromiseSuccess) {
 
                 // parsing the json, so I can be able to access it
-                const giphyBody = JSON.parse(randomPromiseSuccess);
+                const giphyRandomBody = JSON.parse(randomPromiseSuccess);
 
                 // console.log(randomPromiseSuccess);
 
@@ -202,7 +202,7 @@ $(document).ready(function () {
                 // console.log(giphyBody.data[0].embed_url);
 
                 // parsing the json to store the embed_url image in it
-                const secondEmbeddedGifUrl = giphyBody.data[0].embed_url;
+                const secondEmbeddedGifUrl = giphyRandomBody.data[0].embed_url;
 
                 // showing(in this case prepending) the gifs in the application for user
                 $(".giphy-shower").prepend(
@@ -253,7 +253,27 @@ $(document).ready(function () {
 
             giphyTrendRequest.open("GET", giphyTrendUrl, true);
             giphyTrendRequest.send();
+
+            // a .then() to determine whether the promise is resolved(mandatory to do this) or whether the promise is rejected(optional to do this)
+
+            giphyTrendPromise.then(function (trendPromiseSuccess) {
+                // parsing the json gotten
+                const giphyTrendBody = JSON.parse(trendPromiseSuccess);
+
+                const thirdEmbeddedGifUrl = giphyTrendBody.data[0].embed_url;
+
+                // showing(in this case prepending) the gifs in the application for user
+                $(".giphy-shower").prepend(
+                    `
+                <br> <br>
+                    <h5>You are ${userGif}, this is a gif for you</h5> 
+                <iframe src="${thirdEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
+                );
+
+            });
         }
+
+
 
     });
 
