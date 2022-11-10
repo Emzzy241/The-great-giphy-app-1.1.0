@@ -165,7 +165,7 @@ $(document).ready(function () {
                 // At the beginning I set the search by telling giphy I want this particular endpoint to serach for gifs matching user's value 
 
 
-                const giphyRandomUrl = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${userGif}&limit=1&offset=0&rating=g&lang=en`
+                const giphyRandomUrl = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=&rating=g`
 
                 // using an .onload property here instead of the .onreadystatechange is really great as we no longer have to specify a readyState of 4, 
                 // and also it will be triggered once: (when the response has loaded) and not everytime the readyState has changes
@@ -226,6 +226,33 @@ $(document).ready(function () {
         }
         else if (userPick === "trend") {
 
+            let giphyTrendPromise = new Promise(function (trendPromiseResolved, trendPromiseRejected) {
+
+                // reinstantiating an XMLHttp object 
+                let giphyTrendRequest = new XMLHttpRequest();
+
+                // taking the url for trending gifs
+
+                const giphyTrendUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.API_KEY}&tag=&rating=g`
+
+                // using the onload property to wait for the request to load
+
+                giphyTrendRequest.onload = function () {
+                    // running another branch to determine whether the status of the trend promise is = 200
+                    if (this.status === 200) {
+                        trendPromiseResolved(this.response);
+                    }
+                    else {
+                        trendPromiseRejected(this.response);
+                    }
+                }
+
+            });
+
+            // time to open and send the request 
+
+            giphyTrendRequest.open("GET", giphyTrendUrl, true);
+            giphyTrendRequest.send();
         }
 
     });
