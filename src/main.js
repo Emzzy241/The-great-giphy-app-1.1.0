@@ -71,7 +71,7 @@ $(document).ready(function () {
             $(".giphy-shower").prepend(
                 `
                 <br> <br>
-                    <h5>You are ${userGif}, this is a gif for you</h5> 
+                    <h5>You entered; ${userGif}, here is a gif for you</h5> 
                 <iframe src="${firstEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
             );
 
@@ -154,6 +154,9 @@ $(document).ready(function () {
         // running a branch to determine which value user selected to determine which API CALL TO MAKE
 
         if (userPick === "random") {
+
+            // userPick = "random"
+
             let giphyRandomPromise = new Promise(function (randomPromiseResolved, randomPromiseRejected) {
 
                 // initiating an XMLhttprequest object for api and storing it in a variable
@@ -199,21 +202,21 @@ $(document).ready(function () {
                 // console.log(randomPromiseSuccess);
 
                 // showing what I have in my parsed JSON in the console
-                // console.log(giphyBody.data[0].embed_url);
+                // console.log(giphyBody.data.embed_url);
 
                 // parsing the json to store the embed_url image in it
-                const secondEmbeddedGifUrl = giphyRandomBody.data[0].embed_url;
+                const secondEmbeddedGifUrl = giphyRandomBody.data.embed_url;
 
                 // showing(in this case prepending) the gifs in the application for user
-                $(".giphy-shower").prepend(
+                $(".gif-shower-two").prepend(
                     `
                 <br> <br>
-                    <h5>You are ${userGif}, this is a gif for you</h5> 
+                <h5>A Random gif for user</h5> 
                 <iframe src="${secondEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
                 );
             },
                 function (myRandomPromiseFailed) {
-                    $(".giphy-shower").prepend(
+                    $(".gif-shower-two").prepend(
                         `
                 <br> <br>
                 <h5>There was an error processing your Request: ${myRandomPromiseFailed}</h5>    
@@ -226,6 +229,7 @@ $(document).ready(function () {
         }
         else if (userPick === "trend") {
 
+            // userPick = "trend"
             let giphyTrendPromise = new Promise(function (trendPromiseResolved, trendPromiseRejected) {
 
                 // reinstantiating an XMLHttp object 
@@ -247,12 +251,12 @@ $(document).ready(function () {
                     }
                 }
 
+
+                // time to open and send the request 
+
+                giphyTrendRequest.open("GET", giphyTrendUrl, true);
+                giphyTrendRequest.send();
             });
-
-            // time to open and send the request 
-
-            giphyTrendRequest.open("GET", giphyTrendUrl, true);
-            giphyTrendRequest.send();
 
             // a .then() to determine whether the promise is resolved(mandatory to do this) or whether the promise is rejected(optional to do this)
 
@@ -263,14 +267,24 @@ $(document).ready(function () {
                 const thirdEmbeddedGifUrl = giphyTrendBody.data[0].embed_url;
 
                 // showing(in this case prepending) the gifs in the application for user
-                $(".giphy-shower").prepend(
+                $(".gif-shower-two").prepend(
                     `
                 <br> <br>
-                    <h5>You are ${userGif}, this is a gif for you</h5> 
+                <h5>A Trending gif for user</h5> 
                 <iframe src="${thirdEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
                 );
 
-            });
+            },
+                function (myTrendPromiseFailed) {
+                    $(".gif-shower-two").prepend(
+                        `
+                <br> <br>
+                <h5>There was an error processing your Request: ${myTrendPromiseFailed}</h5>    
+                <h5>Please Try again</h5>    
+                `
+                    );
+                }
+            );
         }
 
 
