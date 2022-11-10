@@ -1,4 +1,4 @@
-# THE Great Giphy App
+# THE Great Giphy  1.1.0
 #### made by Mojiboye Emmanuel
 
 #### An application you can input how you feel and then get an amazing gif that completely expresses how you feel
@@ -15,9 +15,6 @@
 * JSON
 * Giphy.com API
 * Promise
-* Async and Await functions
-* Fetch
-
 
 ## Description
 _In this application, you experience how powerful the term API is and you also get to explore one of the best sites to get amazing gifs which is: (giphy.com). I know you would definitely want to know what APi key I used, below which is the setup/Installation is where you can get all those. You get 3 amazing giphy features in this application, enjoy the APP_
@@ -41,7 +38,9 @@ https://emzzy241.github.io/The-great-giphy-app/
 * _No detected bugs_
 * _The one bug you will definitely encounter is if you fail to follow any of the Setup/Installation Information I gave you_
 * _Note: THis is the version 1.1.0 you were promised, and in this version you get to see me separating out my two logics(business logic and userInterface logic)
-into two files, also in this app you will be learning about new JavaScript technologies like Promise, Async nd Await, and fetch. As at the launch of this Application there are no bugs but this is not the finished product as I will be adding more features later on. If anyone comes in contact with a bug, be sure to hit me up on social media or email me @emzzyoluwole@gmail.com. WATCH OUT FOR VERSION 1.2.0 WHICH IS COMING SOON. And also in version 1.2.0, I would be the application many steps further to include other great tools just to make the application a great one for the users _
+into two files, also in this app you will be learning about new JavaScript technologies like Promise, Async nd Await, and fetch. As at the launch of this Application there are no bugs but this is not the finished product as I will be adding more features later on. If anyone comes in contact with a bug, be sure to hit me up on social media or email me @emzzyoluwole@gmail.com. WATCH OUT FOR VERSION 1.2.0 WHICH IS COMING SOON. And also in version 1.2.0, I would be updating the application many steps further to include other great tools like Async and awake functions, Fetch e.t.c. just to make the application a great one for the users _
+
+* _Again: in this version(1.1.0) you get both the code for business logic and the code for userInterface logic separated into 2 different files. Be sure to give the project a star if you like it_
 
 
 ## License
