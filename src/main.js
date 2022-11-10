@@ -33,6 +33,10 @@ $(document).ready(function () {
 
             const giphyUrl = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${userGif}&limit=1&offset=0&rating=g&lang=en`
 
+            // using an .onload property here instead of the .onreadystatechange is really great as we no longer have to specify a readyState of 4, 
+            // and also it will be triggered once: (when the response has loaded) and not everytime the readyState has changes
+
+            // to summarize: using an onload propery here means we are only waiting for the request to load only
             giphyRequest.onload = function () {
                 if (this.status === 200) {
                     // we used promiseResolved or promiseRejected to determine whether a promise should be resolved or rejected
@@ -52,11 +56,16 @@ $(document).ready(function () {
 
         giphyPromise.then(function (myPromiseSuccess) {
 
+            // parsin the json, so I can be able to access it
+            const giphyBody = JSON.parse(myPromiseSuccess);
+
+            // console.log(myPromiseSuccess);
+
             // showing what I have in my parsed JSON in the console
-            console.log(myPromiseSuccess.data[0].embed_url);
+            // console.log(giphyBody.data[0].embed_url);
 
             // parsing the json to store the embed_url image in it
-            const firstEmbeddedGifUrl = myPromiseSuccess.data[0].embed_url;
+            const firstEmbeddedGifUrl = giphyBody.data[0].embed_url;
 
             // showing(in this case prepending) the gifs in the application for user
             $(".giphy-shower").prepend(
@@ -80,6 +89,7 @@ $(document).ready(function () {
         )
 
 
+        /*
         //  Storing a function The property(or key) of XMLHttprequest that will listen for changes to the XMLHttpRequest
 
         giphyRequest.onreadystatechange = function () {
@@ -128,29 +138,13 @@ $(document).ready(function () {
 
 
 
+        */
 
-
-        /*
-            Later on I will be using these trending gif API's to get random gifs for my users
-
-            api.giphy.com/v1/gifs/trending
-            
-            api.giphy.com/v1/stickers/trending
-
-            THe end point for trending gifs
-            https://api.giphy.com/v1/gifs/trending?api_key=GetYourAPIKEYviaREADMEinstruction&limit=25&rating=g
-        
-            */
-
-        /**
-         * THe API endpoint to geenrate random gifs for users
-         https://api.giphy.com/v1/gifs/random?api_key=GetYourAPIKEYviaREADMEinstruction&tag=&rating=g
-         */
-
+      
     });
 
 
-
+/*
     // Other features by the great giphy App
 
     // saving up the 2 new features the app offers
@@ -270,5 +264,5 @@ $(document).ready(function () {
         }
 
     })
-
+        */
 });
