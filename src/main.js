@@ -148,7 +148,8 @@ $(document).ready(function () {
 
 
 
-// in doing it this way(below) there is no separation of logic
+// in doing it this way(below) there is no separation of logic but the one I did above is well separated into different logics and different files
+
 /*
 $(document).ready(function () {
     $(".user-form").submit(function (event) {
@@ -234,52 +235,6 @@ $(document).ready(function () {
 
         )
 
-
-        //  Storing a function The property(or key) of XMLHttprequest that will listen for changes to the XMLHttpRequest
-
-        giphyRequest.onreadystatechange = function () {
-            // I want to console.log it so I can see whether the 4 states I expect XMLHttpRequest to go through before it gives me a response
-
-            console.log(this.readyState);
-
-            // running a branch to tell JavaScript to do something only when the fourth(and final) state of XMLHttprequest has been attained
-
-            if (this.readyState === 4 && this.status === 200) {
-                // note responseText will be the parsed JSON which should be in string format
-                const giphyResponse = JSON.parse(this.responseText);
-
-                getGifs(giphyResponse);
-            }
-            // to be precise now: this conditional states that the API call must be successful and the data transfer must be complete before our code processes that data.
-        };
-
-        // the 3 parameters here are: 1--- get me information("GET"), 2-- take in my endpoint I already stored in avariable, and three is a boolean which is: Yes I want you to open my request for me
-        giphyRequest.open("GET", giphyUrl, true);
-
-        // finally after I've done all the above, send the request to the server
-        giphyRequest.send();
-
-        function getGifs(myGifResponse) {
-
-            // to get my gif's url, I would pick the  img tag I have in index.html and then 
-            // give it a url value of my user's emotion
-            console.log(myGifResponse.data[0].embed_url);
-
-            // $("img").attr("src", myGifResponse.data[0].url);
-
-            const firstEmbeddedGifUrl = myGifResponse.data[0].embed_url;
-
-            // firstImage.src = myGifResponse.data[0].embed_url;
-            // console.log(firstImage);
-
-            $(".giphy-shower").prepend(
-                `
-                <br> <br>
-                    <h5>You are ${userGif}, this is a gif for you</h5> 
-                <iframe src="${firstEmbeddedGifUrl}" height="300" width="290" frameborder="0" allowfullscreen></iframe>`
-            );
-
-        }
 
 
 
