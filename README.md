@@ -32,7 +32,7 @@ _In this application, you experience how powerful the term API is and you also g
 
 
 ## WebPage Link
-https://emzzy241.github.io/The-great-giphy-app/
+https://emzzy241.github.io/The-great-giphy-app-1.1.0/
 
 ## Detected Bugs/ Issues
 * _No detected bugs_

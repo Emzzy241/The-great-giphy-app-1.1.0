@@ -6,10 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 // importing all three classes to my UI logic
-import { SearchGiphyService } from "./giphy-service.js";
-import { RandomGif } from "./giphy-service.js";
-import { TrendingGif } from "./giphy-service.js";
-
+import { SearchGiphyService, RandomGif, TrendingGif } from "./giphy-service.js";
 
 
 // working with the imported classes
